@@ -11,5 +11,9 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8080", "--server.address=0.0.0.0"]
- 
+EXPOSE 8080
+
+ENTRYPOINT ["streamlit","run"]
+CMD ["app.py"]
+
+
