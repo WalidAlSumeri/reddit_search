@@ -2,12 +2,25 @@ import faiss
 import pandas as pd
 import streamlit as st
 from sentence_transformers import SentenceTransformer
+import requests 
+import io
 
 
 @st.cache
 def read_data(s3_data='stocks_crypto_all.csv'):
     """Read the data."""
-    return pd.read_csv(s3_data)
+    # return pd.read_csv(s3_data)
+    header = {
+    "X-API-Key": "c0u91dyk_viAjdWRh6vz9TVMFNKQca5cu7FfHqAfd",
+    "Content-Type": "application/json"
+    }
+
+    detadrive = 'https://drive.deta.sh/v1/c0u91dyk/stocks/files/download?name=stocks_crypto_all.csv'
+
+    data = requests.get(detadrive, headers=header)
+    s = data.content
+    return pd.read_csv(io.StringIO(s.decode('utf-8')))
+    
 
 @st.cache(allow_output_mutation=True)
 def load_bert_model(name="all-mpnet-base-v2"):
