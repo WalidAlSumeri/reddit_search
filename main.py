@@ -1,5 +1,4 @@
 import faiss
-import pickle
 import pandas as pd
 import streamlit as st
 from sentence_transformers import SentenceTransformer
