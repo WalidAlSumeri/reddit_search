@@ -1,1 +1,1 @@
-# similaritysearch_reddit
+# search reddit
